@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<!-- A sample file demonstrating the configuration of Category and
+     Priority sub-classes.  -->
+
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+
+	<appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+		<layout  class="org.apache.log4j.PatternLayout">
+			<param  name="ConversionPattern"
+				   value="%d %-5p [%t] %C{2} (%F:%L) - %m\n"/>
+		</layout>
+	</appender>
+	<appender name="file"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="maxFileSize" value="100KB" />
+		<param name="maxBackupIndex" value="5" />
+		<param name="File" value="test.log" />
+		<param name="threshold" value="info"/>
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%d{ABSOLUTE} %5p %c{1}:%L - %m%n" />
+		</layout>
+	</appender>
+	
+	<logger name="org.hibernate" additivity="false">
+		<level value="ERROR"/>
+		<appender-ref ref="STDOUT"/>
+	</logger>
+	
+	
+	<logger name="org" additivity="false">
+		<level value="INFO"/>
+		<appender-ref ref="STDOUT"/>
+	</logger>	
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="STDOUT"/>
+	</root>
+
+</log4j:configuration>
